@@ -1,20 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TransactionDistributionService } from '../../services/transaction-distribution.service';
 import { TransactionDistribution } from 'src/app/model/transaction-distribution';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css']
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent{
 
-  @Input() distributions: TransactionDistribution[]
+  @Input() public distributions: Observable<TransactionDistribution[]>;
 
-  constructor(private service: TransactionDistributionService) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.service.getTransactionDistribution(0,new Date(), new Date()).subscribe(d => this.distributions = d);    
-  }
+  
 
 }
