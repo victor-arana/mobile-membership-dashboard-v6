@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Food {
-    value: string;
-    viewValue: string;
-}
-  
+import { TransactionDistributionService } from '../../services/transaction-distribution.service';
+import { TransactionDistribution } from 'src/app/model/transaction-distribution';
 
 @Component({
   selector: 'app-select',
@@ -13,14 +9,12 @@ interface Food {
 })
 export class SelectComponent implements OnInit {
 
-  foods: Food[] = [
-        {value: 'steak-0', viewValue: 'Steak'},
-        {value: 'pizza-1', viewValue: 'Pizza'},
-        {value: 'tacos-2', viewValue: 'Tacos'}
-      ];
-  constructor() { }
+  distributions: TransactionDistribution[]
+
+  constructor(private service: TransactionDistributionService) { }
 
   ngOnInit() {
+    this.service.getTransactionDistribution(0,new Date(), new Date()).subscribe(d => this.distributions = d);    
   }
 
 }
