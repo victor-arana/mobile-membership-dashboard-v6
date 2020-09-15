@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TransactionDistributionService } from '../../services/transaction-distribution.service';
 import { TransactionDistribution } from 'src/app/model/transaction-distribution';
 
@@ -9,7 +9,7 @@ import { TransactionDistribution } from 'src/app/model/transaction-distribution'
 })
 export class SelectComponent implements OnInit {
 
-  distributions: TransactionDistribution[]
+  @Input() distributions: TransactionDistribution[]
 
   constructor(private service: TransactionDistributionService) { }
 
